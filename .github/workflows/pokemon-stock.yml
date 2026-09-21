@@ -1,3 +1,5 @@
+name: Pokémon Stock Monitor
+
 on:
   schedule:
     - cron: '0 * * * *'   # elk uur
