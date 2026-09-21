@@ -1,8 +1,6 @@
-name: Pokémon Stock Monitor
-
-on:
+non:
   schedule:
-    - cron: '*/10 * * * *'   # elke 10 minuten
+    - cron: '0 * * * *'   # elk uur
   workflow_dispatch:
 
 permissions:
