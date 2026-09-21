@@ -1,4 +1,4 @@
-non:
+on:
   schedule:
     - cron: '0 * * * *'   # elk uur
   workflow_dispatch:
