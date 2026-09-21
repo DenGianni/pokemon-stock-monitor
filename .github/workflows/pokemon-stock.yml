@@ -2,7 +2,7 @@ name: Pokémon Stock Monitor
 
 on:
   schedule:
-    - cron: '*/6 * * * *'   # elke 10 minuten (stabieler dan elke 5)
+    - cron: '*/6 * * * *'   # elke 10 minuten
   workflow_dispatch:
 
 permissions:
@@ -19,18 +19,18 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
-          fetch-depth: 1          # alleen laatste commit → sneller
+          fetch-depth: 1
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
-          python-version: '3.12'  # stabieler dan 3.13 op dit moment
+          python-version: '3.12'
           cache: 'pip'
 
       - name: Cache Playwright browsers
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         id: playwright-cache
         with:
           path: ~/.cache/ms-playwright
@@ -40,7 +40,6 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          # Alleen browsers installeren als ze niet in de cache zitten
           if [ "${{ steps.playwright-cache.outputs.cache-hit }}" != "true" ]; then
             python -m playwright install --with-deps chromium
           else
